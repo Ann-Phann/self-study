@@ -131,9 +131,20 @@ void print_vector(std::vector<int>& list)
     std::cout << std::endl;
 }
 
+// recursive check for the merge_sort function
+bool verify (const std::vector<int>& list)
+{
+    if (list.size() <= 1)
+    {
+        return true;
+    }
+    return (list[0] <= list[1]) && verify(std::vector<int>(list.begin() + 1, list.end()));
+}
+
 int main (void)
 {
     std::vector<int> list = {8, 3, 6, 2, 1, 5, 7, 4};
     std::vector<int> sorted_list = merge_sort(list);
     print_vector(sorted_list);
+    std::cout << "List is sorted: " << std::boolalpha << verify(sorted_list) << std::endl;
 }
