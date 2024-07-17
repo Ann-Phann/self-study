@@ -45,6 +45,17 @@ std::vector<int> merge(std::vector<int>& left_half, std::vector<int>& right_half
 
 std::vector<int> merge_sort(std::vector<int>& list)
 {
+    /*
+    left:l, right:r
+                     84513267
+split:         8451(l)       3267(r)
+merge_sort:    84(l) 51(r)   32(l) 67(r)
+    */
+
+    //take O(n log n) time complexity
+    //- n number of merge steps:split()
+    //- log n number of merge steps: merge()
+    //take linear space complexity 
     //our stopping condition is our end goal
     int size = list.size();
     if (size <= 1)
@@ -66,6 +77,8 @@ std::pair<std::vector<int>, std::vector<int>> split(std::vector <int>& list)
     /*
     Divide the unsorted list at midpoint into sublists
     Return 2 sublists - left and right
+
+    Take overall O(log n) time complexity
     */
     int mid = list.size()/2;
     std::vector<int> left_half = std::vector<int>(list.begin(), list.begin() + mid);
@@ -78,11 +91,22 @@ std::vector<int> merge(std::vector<int>& left_half, std::vector<int>& right_half
     /*
     Merge two arrays into one
     Return a new merged array
-    e.g: 37 58
+    e.g: 7 3 5 8
+    left = 7, right = 3;
+    compare 3 < 7 --> 37
+    left = 5, right = 8
+    compare 5 < 8 --> 58
+
+    37 58
     left = 37, right = 58
     they will compare left[0] and right[0] --> 3
     then, left[1] and right[0] --> 5
     then, left[1] and right[1] --> 8
+
+
+    We need to make comparison and merge them back in reverse order
+    Take O(n) time complexity
+    - n number of merge steps 
     */
    int left = 0, right = 0; //index for left and right 
    std::vector<int> result; //store the result
