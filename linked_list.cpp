@@ -22,6 +22,8 @@ execution. The major advantage of using linked list over arrays is in implementi
 */
 
 //single linked list
+#ifndef LINKED_LIST_CPP
+#define LINKED_LIST_CPP
 #include <iostream>
 
 class Node {
@@ -203,6 +205,7 @@ public:
         return current;
     }
 };  
+#endif
 
 int main(void)
 {
